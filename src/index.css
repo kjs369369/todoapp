@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+/* ===================================
+   커스텀 CSS 변수 & 전역 스타일
+   다크 테크 스타일 — 시안 블루 포인트
+   =================================== */
+
+@theme {
+  /* 다크 테크 배경 (#0A0A0A ~ #111111) */
+  --color-bg-primary: #0A0A0A;
+  --color-bg-secondary: #111111;
+  --color-bg-tertiary: #1A1A1A;
+  --color-bg-hover: #222222;
+  --color-bg-card: rgba(26, 26, 26, 0.8);
+
+  /* 텍스트: 화이트 메인, 그레이 서브 */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #9CA3AF;
+  --color-text-muted: #6B7280;
+
+  /* 시안 블루 포인트 (#00D4FF ~ #0EA5E9) */
+  --color-accent: #00D4FF;
+  --color-accent-hover: #0EA5E9;
+  --color-accent-light: rgba(0, 212, 255, 0.12);
+
+  /* 우선순위 색상 */
+  --color-priority-high: #ff4757;
+  --color-priority-medium: #ffa502;
+  --color-priority-low: #2ed573;
+
+  /* 상태 색상 */
+  --color-danger: #ff6b6b;
+  --color-success: #51cf66;
+  --color-warning: #fcc419;
+
+  /* 테두리 */
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.15);
+
+  /* 그림자 */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --shadow-popup: 0 8px 40px rgba(0, 0, 0, 0.5);
+
+  /* 사이드바 너비 */
+  --width-sidebar: 260px;
+  --width-detail: 360px;
+}
+
+/* 라이트 모드 오버라이드 */
+.light {
+  --color-bg-primary: #F9FAFB;
+  --color-bg-secondary: #FFFFFF;
+  --color-bg-tertiary: #F3F4F6;
+  --color-bg-hover: #E5E7EB;
+  --color-bg-card: rgba(255, 255, 255, 0.9);
+  --color-text-primary: #111827;
+  --color-text-secondary: #6B7280;
+  --color-text-muted: #9CA3AF;
+  --color-accent: #0EA5E9;
+  --color-accent-hover: #0284C7;
+  --color-accent-light: rgba(14, 165, 233, 0.1);
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-border-hover: rgba(0, 0, 0, 0.15);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.06);
+  --shadow-popup: 0 8px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* 전역 기본 스타일 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Pretendard', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  overflow: hidden;
+  min-height: 100dvh;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+/* 스크롤바 커스텀 (웹킷) */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-text-muted);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}
+
+/* 포커스 스타일 */
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* 체크박스 완료 애니메이션 */
+@keyframes checkmark {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+.check-animate {
+  animation: checkmark 0.3s ease-in-out;
+}
+
+/* 리스트 아이템 슬라이드 인 */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.2s ease-out;
+}
+
+/* 페이드 인 */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* 글래스모피즘 카드 */
+.glass-card {
+  background: var(--color-bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+/* 모바일 하단 네비게이션 높이 보정 */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .mobile-nav {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
